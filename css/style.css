@@ -1,0 +1,8 @@
+.hidden {
+    display: none;
+}
+
+textarea {
+  width: 80%;
+  height: 350px;
+}

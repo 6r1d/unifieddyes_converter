@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>kD-tree image converter</title>
+  <meta name="description" content="Converts input image using kD-tree color search">
+  <meta name="author" content="6r1d">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <input type='file' accept='image/*' onchange='process_file_input(event)'>
+
+  <p class="hidden">Input image:</p>
+  <p class="hidden"><canvas id="input_canvas" width="0" height="0" style="border:1px solid #000000;"></canvas></p>
+
+  <p class="hidden">Output image preview:</p>
+  <p class="hidden"><canvas id="preview_canvas" width="0" height="0" style="border:1px solid #000000;"></canvas></p>
+
+  <p class="hidden">Output data consists of rows from top to bottom, containing pixels sorted left to right.</p>
+
+  <p class="hidden">JSON:</p>
+  <p class="hidden"><textarea id="json_output"></textarea></p>
+
+  <p class="hidden">Lua:</p>
+  <p class="hidden"><textarea id="lua_output"></textarea></p>
+
+  <script src="js/lib/kdTree.js"></script>
+  <script src="js/colors.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
