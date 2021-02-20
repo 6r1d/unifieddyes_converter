@@ -23,11 +23,18 @@
 
   <p class="hidden">Output data consists of rows from top to bottom, containing pixels sorted left to right.</p>
 
-  <p class="hidden">JSON:</p>
-  <p class="hidden"><textarea id="json_output"></textarea></p>
+  <p>Output format:
+    <label><input type="radio" name="output_format" value="JSON" checked> <abbr title="JavaScript object notation">JSON</abbr></label>
+    <label><input type="radio" name="output_format" value="LTN"> <abbr title="Lua table notation">LTN</abbr></label>
+  </p>
 
-  <p class="hidden">Lua:</p>
-  <p class="hidden"><textarea id="lua_output"></textarea></p>
+  <p>Output details:
+    <label><input type="radio" name="output_details" value="simple" checked> Simple</label>
+    <label><input type="radio" name="output_details" value="advanced"> Advanced (width, height, old filename)</label>
+  </p>
+
+  <p class="hidden">Output:</p>
+  <p class="hidden"><textarea id="output"></textarea></p>
 
   <script src="js/lib/kdTree.js"></script>
   <script src="js/colors.js"></script>

@@ -76,17 +76,44 @@ var restore_controls = function() {
 }
 
 // Convert JS array to Lua table
-var js_array_to_ltn = function(arr) {
-    let text = "local data = " + JSON.stringify(arr, null, 4).replaceAll("[", "{").replaceAll("]", "}")
+var json_to_ltn = function(json_str) {
+    let text = "local data = " + json_str.replaceAll("[", "{").replaceAll("]", "}")
     return text
 }
 
+var get_img_filename = function() {
+    let file_field_value = document.querySelector("input[type='file']").value
+    let img_filename = file_field_value.substring(file_field_value.lastIndexOf('\\')+1)
+    return img_filename
+}
+
 var fill_outputs = function(rows) {
-    // Set JSON output value
-    $('#json_output').val(JSON.stringify(rows, null, 2))
-    // Set Lua output value
-    let lua_src = js_array_to_ltn(rows)
-    $('#lua_output').val(lua_src)
+    let output_format = $("input[type='radio'][name='output_format']:checked").val()
+    let output_details = $("input[type='radio'][name='output_details']:checked").val()
+
+    let data;
+
+    if (output_details == "simple") {
+        data = rows
+    }
+    if (output_details == "advanced") {
+        data = {
+            filename: get_img_filename(),
+            width: document.getElementById('input_canvas').width,
+            height: document.getElementById('input_canvas').height,
+            data: rows
+        }
+    }
+
+    let indent_level = (output_format == "JSON") ? 4 : 2;
+    let output_str = JSON.stringify(data, null, indent_level);
+
+    if (output_format == "JSON") {
+        $('#output').val(output_str)
+    }
+    if (output_format == "LTN") {
+        $('#output').val(json_to_ltn(output_str))
+    }
 }
 
 // Image loader
